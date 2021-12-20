@@ -1,7 +1,7 @@
 <template>
     <main>
         <MovieCard v-for="(movie, index) in dataShared.movies" :key="index" :infos="movie" type="movie"/>
-        <MovieCard v-for="(tvShow, index) in dataShared.tvShows" :key="index" :infos="tvShow" type="tv"/>
+        <MovieCard v-for="(tvShow, index) in dataShared.tvShows" :key="index + 20" :infos="tvShow" type="tv"/>
     </main>
 </template>
 
