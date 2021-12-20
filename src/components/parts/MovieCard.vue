@@ -1,12 +1,12 @@
 <template>
-    <main>
+    <div class="card">
 
-    </main>
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'Main'
+    nam: 'MovieCard'
 }
 </script>
 
