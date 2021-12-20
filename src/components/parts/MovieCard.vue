@@ -19,7 +19,7 @@
             class="language">
 
         <!-- vote -->
-        <span class="Vote">{{infos.vote_average}}</span>
+        <span class="Vote" v-for="index in stars" :key="index"><i class="fas fa-star"></i></span>
 
     </div>
 </template>
@@ -30,6 +30,11 @@ export default {
     props: {
         infos: Object,
         type: String
+    },
+    data() {
+        return{
+            stars: Math.ceil(this.infos.vote_average / 2)
+        }
     }
 }
 </script>
