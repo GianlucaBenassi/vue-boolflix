@@ -1,6 +1,7 @@
 <template>
     <main>
-        <MovieCard v-for="(result, index) in dataShared.searchResults" :key="index" :infos="result"/>
+        <MovieCard v-for="(movie, index) in dataShared.movies" :key="index" :infos="movie" type="movie"/>
+        <MovieCard v-for="(tvShow, index) in dataShared.tvShows" :key="index" :infos="tvShow" type="tv"/>
     </main>
 </template>
 

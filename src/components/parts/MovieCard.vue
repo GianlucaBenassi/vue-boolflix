@@ -1,14 +1,23 @@
 <template>
     <div class="card">
-        <h2>{{infos.title}}</h2>
-        <h3>{{infos.original_title}}</h3>
+
+        <!-- titoli -->
+        <h2 v-if="type == 'movie'">{{infos.title}}</h2>
+        <h2 v-else>{{infos.name}}</h2>
+        <h3 v-if="tyle == 'movie'">{{infos.original_title}}</h3>
+        <h3 v-else>{{infos.original_name}}</h3>
+
+        <!-- lingua -->
         <span v-if="infos.original_language == ''">Lingua non disponibile</span>
         <img 
             v-else
             :src="require('../../assets/img/flags/' + infos.original_language + '.svg')" 
             :alt="infos.original_title + ' language ' + infos.original_language" 
             class="language">
+
+        <!-- voto -->
         <span class="Vote">{{infos.vote_average}}</span>
+
     </div>
 </template>
 
@@ -16,7 +25,8 @@
 export default {
     name: 'MovieCard',
     props: {
-        infos: Object
+        infos: Object,
+        type: String
     }
 }
 </script>
