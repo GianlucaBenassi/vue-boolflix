@@ -6,7 +6,7 @@
         <img class="poster_card" v-else :src="'https://image.tmdb.org/t/p/w342' + infos.poster_path" :alt="'Poster ' + infos.id">
 
         <!-- infos -->
-        <div class="ms_infos position-absolute top-0 bottom-0 start-0 end-0 p-2">
+        <div class="ms_infos position-absolute top-0 bottom-0 start-0 end-0 p-2 d-none">
 
             <!-- title -->
             <h4 v-if="type == 'movie'">{{infos.title}}</h4>
@@ -62,12 +62,21 @@ export default {
 <style lang="scss" scoped>
 
 .ms_card {
+    cursor: pointer;
+
+    &:hover .ms_infos {
+        display: block !important;
+    }
 
     .poster_card {
         width: 100%;
-        height: 400px;
+        height: 380px;
         object-fit: cover;
         object-position: center;
+
+        @media screen and (max-width: 576px) {
+            height: auto;
+        }
     }
 
     .ms_infos {
