@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="logo">
-            ###logo###
+            <img src="../../assets/img/logo.png" alt="Boolflix logo">
         </div>
         <div class="search">
             <input type="text" v-model="searchText" @keyup.enter="onSearchMovie()">

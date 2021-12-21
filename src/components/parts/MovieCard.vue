@@ -2,7 +2,8 @@
     <div class="card">
 
         <!-- poster -->
-        <img :src="'https://image.tmdb.org/t/p/w342' + infos.poster_path" :alt="'Poster ' + infos.id">
+        <img v-if="infos.poster_path == null" src="../../assets/img/no-poster.jpg" :alt="'no poster ' + infos.id">
+        <img v-else :src="'https://image.tmdb.org/t/p/w342' + infos.poster_path" :alt="'Poster ' + infos.id">
 
         <!-- title -->
         <h2 v-if="type == 'movie'">{{infos.title}}</h2>
