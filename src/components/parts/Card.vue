@@ -27,7 +27,7 @@
 
 <script>
 export default {
-    name: 'MovieCard',
+    name: 'Card',
     props: {
         infos: Object,
         type: String
