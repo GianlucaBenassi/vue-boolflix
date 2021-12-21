@@ -65,7 +65,10 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
-                }); 
+                });
+
+                // change main message
+                dataShared.mainMessage = 'Nessun risultato trovato'
 
             }
         }

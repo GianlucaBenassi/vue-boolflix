@@ -1,9 +1,12 @@
 <template>
     <div class="container">
 
+        <hr class="opacity-100">
+
         <!-- title -->
         <div class="row">
-            <h2 class="text-center text-md-start mt-2">Lista film</h2>
+            <h2 v-if="dataShared.movies.length == 0" class="text-center text-md-start mt-2">Nessun film trovato</h2>
+            <h2 v-else class="text-center text-md-start mt-2">Lista film</h2>
         </div>
 
         <!-- cards -->
@@ -34,5 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+hr {
+    color: #dc1a28;
+    height: 4px;
+}
 
 </style>

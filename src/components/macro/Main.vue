@@ -1,7 +1,15 @@
 <template>
     <main>
-        <MovieList/>
-        <TvShowList/>
+
+        <div v-if="dataShared.movies.length == 0 && dataShared.tvShows.length == 0" class="container">
+            <h2>{{dataShared.mainMessage}}</h2>
+        </div>
+
+        <div v-else>
+            <MovieList/>
+            <TvShowList/>
+        </div>
+
     </main>
 </template>
 
