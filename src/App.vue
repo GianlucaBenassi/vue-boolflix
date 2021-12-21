@@ -22,4 +22,9 @@ export default {
 
 @import './assets/style/global.scss';
 
+#app {
+  background-color: #1b1b1b;
+  min-height: 100vh;
+}
+
 </style>

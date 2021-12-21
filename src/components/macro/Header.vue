@@ -1,11 +1,18 @@
 <template>
     <header>
-        <div class="logo">
-            <img src="../../assets/img/logo.png" alt="Boolflix logo">
-        </div>
-        <div class="search">
-            <input type="text" v-model="searchText" @keyup.enter="onSearchMovie()">
-            <button @click="onSearchMovie()">Search</button>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 py-3">
+
+                <div class="col d-flex justify-content-center justify-content-md-start">
+                    <img src="../../assets/img/logo.png" alt="Boolflix logo">
+                </div>
+
+                <div class="col d-flex justify-content-center justify-content-md-end align-items-center mt-2 mt-md-0">
+                    <input type="text" v-model="searchText" @keyup.enter="onSearchMovie()">
+                    <button class="ms-1" @click="onSearchMovie()">Search</button>
+                </div>
+
+            </div>
         </div>
     </header>
 </template>
