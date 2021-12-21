@@ -6,8 +6,11 @@
             <h2 class="text-center text-md-start mt-2">Lista film</h2>
         </div>
 
-        <div class="row">
-            <Card v-for="(movie, index) in dataShared.movies" :key="index" :infos="movie" type="movie"/>
+        <!-- cards -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
+            <div class="col" v-for="(movie, index) in dataShared.movies" :key="index">
+                <Card :infos="movie" type="movie"/>
+            </div>
         </div>
 
     </div>
