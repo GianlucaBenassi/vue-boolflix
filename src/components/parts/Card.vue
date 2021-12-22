@@ -17,10 +17,10 @@
                 class="language_icon position-absolute bottom-0 end-0 opacity-75">
 
             <!-- title -->
-            <h4>{{infos.title || infos.name}}</h4>
+            <h4 class="line_clamp_2">{{infos.title || infos.name}}</h4>
 
             <!-- original title -->
-            <span class="d-block mb-2"><strong>Titolo originale:</strong> {{infos.original_title || infos.original_name}}</span>
+            <span class="mb-2 line_clamp_2"><strong>Titolo originale:</strong> {{infos.original_title || infos.original_name}}</span>
 
             <!-- vote -->
             <span class="Vote d-block mb-2">
@@ -29,10 +29,10 @@
             </span>
 
             <!-- overview -->
-            <p class="overflow-hidden"><strong>Overview:</strong> {{infos.overview || 'Not available'}}</p>
+            <p class="overflow-hidden line_clamp_3"><strong>Overview:</strong> {{infos.overview || 'Not available'}}</p>
 
             <!-- cast -->
-            <p><strong>Cast:</strong> {{creditsList}}</p>
+            <p class="line_clamp_3"><strong>Cast:</strong> {{creditsList}}</p>
 
         </div>
 
@@ -99,13 +99,6 @@ export default {
 
         .language_icon {
             max-width: 25px;
-        }
-
-        p {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;  
-            overflow: hidden;
         }
 
     }
