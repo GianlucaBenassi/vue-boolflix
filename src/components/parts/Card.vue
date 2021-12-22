@@ -10,6 +10,12 @@
         <!-- infos -->
         <div class="ms_infos position-absolute top-0 bottom-0 start-0 end-0 p-2 d-none">
 
+            <!-- language -->
+            <img 
+                :src="infos.original_language ? require('../../assets/img/flags/' + infos.original_language + '.svg') : require('../../assets/img/no-flag.png')" 
+                :alt="'language for' + infos.id" 
+                class="language_icon position-absolute bottom-0 end-0 opacity-75">
+
             <!-- title -->
             <h4>{{infos.title || infos.name}}</h4>
 
@@ -22,14 +28,11 @@
                 <i v-for="index in stars" :key="index" class="fas fa-star"></i>
             </span>
 
-            <!-- language -->
-            <img 
-                :src="infos.original_language ? require('../../assets/img/flags/' + infos.original_language + '.svg') : require('../../assets/img/no-flag.png')" 
-                :alt="'language for' + infos.id" 
-                class="language_icon mb-2">
-
             <!-- overview -->
             <p class="overflow-hidden"><strong>Overview:</strong> {{infos.overview || 'Not available'}}</p>
+
+            <!-- cast -->
+            <p><strong>Cast:</strong> {{castList}}</p>
 
         </div>
 
@@ -41,12 +44,25 @@ export default {
     name: 'Card',
     props: {
         infos: Object,
-        type: String
     },
     data() {
         return{
-            stars: Math.ceil(this.infos.vote_average / 2)
+            stars: Math.ceil(this.infos.vote_average / 2),
+            castList: ''
         }
+    },
+    mounted() {
+
+        // get cast list
+        if (this.infos.cast.length == 0) {
+            this.castList = 'Not available'
+        } else {
+            this.infos.cast.forEach(elm => {
+                this.castList += elm.name + ', ';
+            });
+            this.castList = this.castList.slice(0, -2);
+        }
+
     }
 }
 </script>
