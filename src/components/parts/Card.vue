@@ -23,17 +23,20 @@
             <span class="mb-2 line_clamp_2"><strong>Titolo originale:</strong> {{infos.original_title || infos.original_name}}</span>
 
             <!-- vote -->
-            <span class="Vote d-block mb-2">
+            <span class="Vote d-block mb-1">
                 <strong class="me-2">Voto:</strong>
                 <i v-for="index in stars" :key="index" class="fas fa-star"></i>
                 <i v-for="index in (5 - stars)" :key="index + 5" class="far fa-star"></i>
             </span>
 
             <!-- overview -->
-            <p class="overflow-hidden line_clamp_3"><strong>Overview:</strong> {{infos.overview || 'Not available'}}</p>
+            <p class="overflow-hidden mb-1 line_clamp_3"><strong>Overview:</strong> {{infos.overview || 'Not available'}}</p>
 
             <!-- cast -->
-            <p class="line_clamp_3"><strong>Cast:</strong> {{creditsList}}</p>
+            <p class="mb-1 line_clamp_3"><strong>Cast:</strong> {{creditsList}}</p>
+
+            <!-- genre -->
+            <p class="line_clamp_2"><strong>Genres:</strong> {{genresList}}</p>
 
         </div>
 
@@ -45,6 +48,7 @@ export default {
     name: 'Card',
     props: {
         infos: Object,
+        globalGenres: Array
     },
     data() {
         return{
@@ -61,6 +65,21 @@ export default {
                 let list = '';
                 this.infos.cast.forEach(elm => {
                     list += elm.name + ', ';
+                });
+                return list.slice(0, -2);
+            }
+        },
+
+        genresList() {
+            // convert genre ids to name
+            if (this.infos.genre_ids.length == 0) {
+                return 'Not available';
+            } else {
+                let list = '';
+                let listObj = {};
+                this.infos.genre_ids.forEach(elm => {
+                    listObj = this.globalGenres.find(x => x.id == elm);
+                    list += listObj.name + ', ';
                 });
                 return list.slice(0, -2);
             }

@@ -11,7 +11,7 @@
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
             <div class="col" v-for="(tvShow, index) in dataShared.tvShows" :key="index + 20">
-                <Card :infos="tvShow"/>
+                <Card :infos="tvShow" :globalGenres="dataShared.genreList"/>
             </div>
         </div>
 
