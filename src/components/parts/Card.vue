@@ -26,6 +26,7 @@
             <span class="Vote d-block mb-2">
                 <strong class="me-2">Voto:</strong>
                 <i v-for="index in stars" :key="index" class="fas fa-star"></i>
+                <i v-for="index in (5 - stars)" :key="index + 5" class="far fa-star"></i>
             </span>
 
             <!-- overview -->
