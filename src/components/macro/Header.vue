@@ -113,6 +113,48 @@ export default {
 
             }
         }
+    },
+    mounted() {
+
+        // get movies genre list
+        const getMoviesGenre = () => {
+            return axios.get('https://api.themoviedb.org/3/genre/movie/list', {
+                params: {
+                    api_key: this.apiKey,
+                    language: this.apiLang
+                }
+            });
+        }
+
+        // get tv shows genre list
+        const getTvShowsGenre = () => {
+            return axios.get('https://api.themoviedb.org/3/genre/tv/list', {
+                params: {
+                    api_key: this.apiKey,
+                    language: this.apiLang
+                }
+            });
+        }
+
+        // axios multi get request for genres
+        Promise.all([getMoviesGenre(), getTvShowsGenre()])
+        .then((results) => {
+
+            const arrGenreList = results[0].data.genres;
+            results[1].data.genres.forEach(elm => {
+                arrGenreList.push(elm);
+            });
+
+            const notDupId = [];
+            arrGenreList.forEach(elm => {
+                if (!notDupId.includes(elm.id)) {
+                    notDupId.push(elm.id);
+                    this.dataShared.genreList.push(elm);
+                }
+            });
+
+        });
+
     }
 }
 </script>
