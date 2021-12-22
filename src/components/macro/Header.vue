@@ -8,8 +8,8 @@
                 </div>
 
                 <div class="col d-flex justify-content-center justify-content-md-end align-items-center mt-2 mt-md-0">
-                    <input type="text" v-model="searchText" @keyup.enter="onSearchMovie()">
-                    <button class="ms-1" @click="onSearchMovie()">Search</button>
+                    <input type="text" v-model="searchText" @keyup.enter="onSearch()">
+                    <button class="ms-1" @click="onSearch()">Search</button>
                 </div>
 
             </div>
@@ -32,12 +32,16 @@ export default {
         }
     },
     methods: {
-        onSearchMovie: function() {
+        onSearch: function() {
             if (this.searchText == '') {
 
                 alert('Inserisci un valore corretto!');
 
             } else {
+                
+                // clear shared data
+                this.dataShared.movies = [];
+                this.dataShared.tvShows = [];
 
                 // get movies
                 axios.get('https://api.themoviedb.org/3/search/movie', {
@@ -49,10 +53,10 @@ export default {
                 })
                 .then((response) => {
                     // add movies to dataShared.movies
-                    this.dataShared.movies = response.data.results;
+                    const movieList = response.data.results;
 
                     // get movies credits
-                    this.dataShared.movies.forEach((elm, index) => {
+                    movieList.forEach((elm, index) => {
                         axios.get(`https://api.themoviedb.org/3/movie/${elm.id}/credits`, {
                             params: {
                                 api_key: this.apiKey,
@@ -61,13 +65,14 @@ export default {
                         })
                         .then((response) => {
                             // add cast property to movie object
-                            this.dataShared.movies[index].cast = (response.data.cast).slice(0,5);
+                            movieList[index].cast = (response.data.cast).slice(0,5);
+                            this.dataShared.movies.push(movieList[index]);
                         })
                         .catch(function(error) {
                             console.log(error);
                         });
                     });
-
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -84,10 +89,10 @@ export default {
                 })
                 .then((response) => {
                     // add tvShows to dataShared.tvShows
-                    this.dataShared.tvShows = response.data.results;
+                    const tvShowList = response.data.results;
 
                     // get tvShow credits
-                    this.dataShared.tvShows.forEach((elm, index) => {
+                    tvShowList.forEach((elm, index) => {
                         axios.get(`https://api.themoviedb.org/3/tv/${elm.id}/credits`, {
                             params: {
                                 api_key: this.apiKey,
@@ -96,7 +101,8 @@ export default {
                         })
                         .then((response) => {
                             // add cast property to tvShows object
-                            this.dataShared.tvShows[index].cast = (response.data.cast).slice(0,5);
+                            tvShowList[index].cast = (response.data.cast).slice(0,5);
+                            this.dataShared.tvShows.push(tvShowList[index]);
                         })
                         .catch(function(error) {
                             console.log(error);

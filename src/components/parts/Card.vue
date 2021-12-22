@@ -32,7 +32,7 @@
             <p class="overflow-hidden"><strong>Overview:</strong> {{infos.overview || 'Not available'}}</p>
 
             <!-- cast -->
-            <p><strong>Cast:</strong> {{castList}}</p>
+            <p><strong>Cast:</strong> {{creditsList}}</p>
 
         </div>
 
@@ -47,20 +47,22 @@ export default {
     },
     data() {
         return{
-            stars: Math.ceil(this.infos.vote_average / 2),
-            castList: ''
+            stars: Math.ceil(this.infos.vote_average / 2)
         }
     },
-    mounted() {
+    computed: {
 
-        // get cast list
-        if (this.infos.cast.length == 0) {
-            this.castList = 'Not available'
-        } else {
-            this.infos.cast.forEach(elm => {
-                this.castList += elm.name + ', ';
-            });
-            this.castList = this.castList.slice(0, -2);
+        creditsList() {
+            // get cast list
+            if (this.infos.cast.length == 0) {
+                return 'Not available'
+            } else {
+                let list = '';
+                this.infos.cast.forEach(elm => {
+                    list += elm.name + ', ';
+                });
+                return list.slice(0, -2);
+            }
         }
 
     }
